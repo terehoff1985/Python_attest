@@ -1,0 +1,15 @@
+import pandas as pd
+
+lst = ['robot'] * 10
+lst += ['human'] * 10
+random.shuffle(lst)
+data = pd.DataFrame({'whoAmI': lst})
+
+Создаем one-hot кодировку:
+categories = pd.Categorical(data['whoAmI'])
+one_hot = pd.get_dummies(categories, prefix='whoAmI')
+
+Объединяем one-hot кодировку с исходным DataFrame:
+data_one_hot = pd.concat([data, one_hot], axis=1)
+
+data_one_hot.head()
